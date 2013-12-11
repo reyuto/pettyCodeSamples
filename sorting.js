@@ -30,3 +30,41 @@ function insertionSort(items, length, fnCompare) {
         list[index - 1] = temp;
     }
 }
+
+/**
+ * Quicksort Algorithm O(>= nlogn)
+ */
+function Quicksort(list) {
+    var len = list.length; 
+    var pivot = list[0];
+    var count = 0;
+    var less = [];
+    var greater = [];
+    var equal = [];
+
+    if (len > 1) {
+        while (count < len) {
+            var elem = list[count++];
+            switch (compare(pivot, elem)) {
+                case "less":
+                    less.push(elem);
+                    break;
+                case "equal":
+                    equal.push(elem);
+                    break;
+                case "more":
+                    greater.push(elem);
+                    break;
+            }
+        }
+        less = Quicksort(less);
+        greater = Quicksort(greater);
+        list = less.concat(equal).concat(greater);
+    }
+
+    return list;
+
+    function compare(pivot, elem) {
+        return ((pivot === elem) ? 'equal' : ((pivot < elem) ? 'more' : 'less'));
+    }
+}
