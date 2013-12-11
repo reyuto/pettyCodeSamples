@@ -64,6 +64,9 @@ function Quicksort(list) {
 
     return list;
 
+    /**
+     *  @inner
+     */
     function compare(pivot, elem) {
         return ((pivot === elem) ? 'equal' : ((pivot < elem) ? 'more' : 'less'));
     }
