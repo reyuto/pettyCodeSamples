@@ -71,3 +71,40 @@ function Quicksort(list) {
         return ((pivot === elem) ? 'equal' : ((pivot < elem) ? 'more' : 'less'));
     }
 }
+
+function Quicksort2(list) {
+    function Quicksort (left, right){
+        if (left < right) {
+            var left_new = left,
+                right_new = right,
+                pivot = list[(left + right) >> 1];
+            do {
+                while (list[left_new] < pivot) 
+                    left_new++;
+    
+                while (list[right_new] > pivot)
+                    right_new--;
+    
+                if (left_new <= right_new) {
+                    swap(left_new++, right_new--);
+                }
+            } while (left_new <= right_new);
+    
+            Quicksort(left, right_new);
+            Quicksort(left_new, right);
+        }
+    }
+    
+    Quicksort(0, list.length - 1);
+    return list;
+
+    /**
+     * @inner
+     */
+    function swap(left, right) {
+        var temp = list[right];
+        list[right] = list[left];
+        list[left] = temp;
+    }
+
+}
